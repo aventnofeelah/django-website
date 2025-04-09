@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+    <title>Registration</title>
+</head>
+<body>
+    <div id="anim-1"></div>
+    <div id="anim-2"></div>
+    <div id="main">
+        <div id="general">
+            <div id="logo"></div>
+            <div id="action">
+                <p>Registration</p>
+            </div>
+            <div id="regist-form">
+                <form method="post">
+                    {% csrf_token %}
+                    {% comment %} {{form.as_p}} {% endcomment %}
+                    <div class="form-input">
+                        {{ form.username.label_tag }} {{form.username}}
+                    </div>
+                    <div class="form-input">
+                        {{ form.email.label_tag }} {{ form.email }}
+                    </div>
+                    <div class="form-input">
+                        {{ form.country.label_tag }} {{form.country}}
+                    </div>
+                    <div class="form-input">
+                        {{ form.password.label_tag }} {{form.password}}
+                    </div>
+                    <div class="form-input">
+                        {{ form.password_confirm.label_tag }} {{form.password_confirm}}
+                    </div>
+
+                    <button id="submit-reg-form" type="submit">Register</button>
+                    {% if form.errors %}
+                        <div id="errors-div">
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <p style="color: rgb(255, 77, 77)"> {{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </form>
+            </div>
+            
+            <p id="login-p">Already registered? <a href="{% url 'login_path' %}">Login</a></p>
+            <p id="priv-policy"><a href="#">Privacy Policy</a></p>
+        </div>
+    </div>
+</body>
+</html>

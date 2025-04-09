@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'login.css'%}">
+    <title>Login</title>
+</head>
+<body>
+    <div id="main">
+        <div id="general">
+            <div id="logo"></div>
+            <div id="action">Login</div>
+            <div id="login-form">
+                <form method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button id="submit-log-form" type="submit">Login</button>
+                </form>
+            </div>
+            <p id="registration-p"><a href="{% url 'reigistration_path' %}">Registration</a></p>
+            <p id="password_reset"><a href="#">Password reset</a></p>
+        </div>
+    </div>
+</body>
+</html>

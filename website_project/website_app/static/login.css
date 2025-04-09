@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@font-face{
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Italic-VariableFont_wght.ttf') format('truetype'),
+         url('../fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    overflow: hidden;
+}
+#main{
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+#general{ 
+    width: clamp(200px, 20vw, 500px);
+    height: 65vh; 
+}
+#logo{
+    width: clamp(23%, 26%, 28%);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border: 1px solid black;
+    border-radius: 50%;
+    margin-left: 37%;
+}
+#action{
+    width: 55%;
+    height: 3.6%;
+    border: 1px solid black;
+    text-align: center;
+    margin-left: 22%;
+    margin-top: 5%;
+    font-size: clamp(16px, 1vw, 24px); 
+    letter-spacing: 0.3vw;
+    border-radius: 10px;
+}
+#login-form{
+    width: clamp(200px, 20vw, 500px);
+    height: 50vh;
+    border: 1px solid black;
+    border-radius: 30px;
+    margin-top: 5%;
+}
+#registration-p{
+    text-align: center;
+}
+#password_reset{
+    text-align: center;
+}
+

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'users.css' %}">
+    <title>SkillStorage - Users</title>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <a href="{% url 'main_path' %}" id="logo">SkillStorage</a>
+            {% if user.is_authenticated %}
+                <div id="avatar-name-div">
+                    <a href="{% url 'addportfolio_path' request.user.id %}" id="add-portfolio"></a>
+                    <div id="user-avatar">
+                        <img id="user-avatar-img" src="{{ user.avatar.url }}" alt="Profile picture">
+                    </div>
+                    <a href="{% url 'profile_path' request.user.id %}" id="username-a">{{ request.user.username }}</a>
+                    <button id="messages-icon" onclick="showmessagesFunc()"></button>
+                    <a href="{% url 'logout_path' %}" id="logout-a"></a>
+                </div>
+            {% else %}
+                <div id="reg-login-div">
+                    <a id="registration-a" href="{% url 'reigistration_path' %}"><b>SIGN UP</b></a>
+                    <a id="login-a" href="{% url 'login_path' %}"><b>LOG IN</b></a> 
+                </div>
+            {% endif %}
+        </div>
+        <div id="middle">
+            <div id="search-filter">
+                <h1>Users</h1>
+                <div id="search-users-div">
+                    <form method="get">
+                        {{ form.as_p }}
+                        <button type="submit" id="search-users-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+            <div id="users-list">
+                {% for user in page_obj %}
+                    <div id="user-div">
+                        <div id="user-div-avatar">
+                            <img id="user-div-avatar-img" src="{{ user.avatar.url }}" alt="Profile picture">
+                        </div>
+                        <div style="margin-left: 5%;">
+                            <a href="{% url 'profile_path' user.id %}" id="user-name">{{ user.username }}</a>
+                            <p id="user-profession">{{ user.profession }}</p>
+                            <p id="user-country">{{ user.get_country_display }}</p>
+                            <p id="portfolio-amount">Portfolios: {{ user.works.count }}</p>
+                        </div>
+                    </div>
+                {% endfor %} 
+            </div>
+            {% comment %} from django documentation {% endcomment %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">first</a>
+                        {% comment %} <a href="?page={{ page_obj.previous_page_number }}">previous</a> {% endcomment %}
+                        <a href="?search={{ query }}&page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+            
+                    {% if page_obj.has_next %}
+                        {% comment %} <a href="?page={{ page_obj.next_page_number }}">next</a> {% endcomment %}
+                        <a href="?search={{ query }}&page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        <div id="left-panel">
+            <button id="left-panel-move" onclick="leftpanelmoveFunc()"></button>
+            <div id="left-panel-links">
+                <a href="{% url 'users_path' %}" class="lp-link"><b>USERS</b></a>
+                <a href="#" class="lp-link"><b>PORTFOLIOS</b></a>
+                <a href="#" class="lp-link"><b>UPLOAD RULES</b></a>
+                <a href="#" class="lp-link"><b>SAVES</b></a>
+                <a href="#" class="lp-link"><b>REPORT A BUG</b></a>
+                <a href="#" class="lp-link"><b>SUPPORT US</b></a>
+            </div>
+        </div>
+    </div>
+    <div id="messages">
+        <h1>Messages</h1>
+        <button id="messages-close-btn" onclick="closemessagesFunc()"></button>
+        <div id="messages-list">
+            {% for message in messages %}
+                <div id="message-div">
+                    <h2>{{ message.topic }}</h2>
+                    <p>{{ message.message_text}}</p>
+                    <p><b>{{ message.date}}</b></p>
+                    <button id="delete-message-btn">Delete</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        isOpen = 0;
+        function leftpanelmoveFunc(){
+            if(!isOpen){
+                document.getElementById("left-panel").style.marginLeft = "1%";
+                document.getElementById("left-panel").style.boxShadow = "0 0 0 2px crimson";
+                document.getElementById("left-panel-move").style.transform = "rotate(90deg)";
+                isOpen = 1;
+            }
+            else{
+                document.getElementById("left-panel").style.marginLeft = "-17.5%";
+                document.getElementById("left-panel").style.boxShadow = "0 0 0 0 crimson";
+                document.getElementById("left-panel-move").style.transform = "rotate(-90deg)";
+                isOpen = 0;
+            }
+        }
+        function showmessagesFunc(){
+                document.getElementById("messages").style.display = "block";
+                document.getElementById("main").style.filter = "blur(5px)";
+                document.getElementById("main").style.pointerEvents = "none";
+        }
+        function closemessagesFunc(){
+                document.getElementById("messages").style.display = "none";
+                document.getElementById("main").style.filter = "blur(0px)";
+                document.getElementById("main").style.pointerEvents = "auto";   
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    <title>User - {{ user.username }} </title>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <a href="{% url 'main_path' %}" id="logo">SkillStorage</a>
+            {% if request.user.is_authenticated %}
+                <div id="avatar-name-div">
+                    <a href="{% url 'addportfolio_path' request.user.id %}" id="add-portfolio"></a>
+                    <div id="user-avatar">
+                        <img id="user-avatar-img" src="{{ user.avatar.url }}" alt="Profile picture">
+                    </div>
+                    <a href="{% url 'profile_path' request.user.id %}" id="username-a">{{ request.user.username }}</a>
+                    <button id="messages-icon"></button>
+                    <a href="{% url 'logout_path' %}" id="logout-a"></a>
+                </div>
+            {% else %}
+                <div id="reg-login-div">
+                    <a id="registration-a" href="{% url 'reigistration_path' %}"><b>SIGN UP</b></a>
+                    <a id="login-a" href="{% url 'login_path' %}"><b>LOG IN</b></a> 
+                </div>
+            {% endif %}
+        </div>
+        <div id="middle">
+            <div style="display: flex;">
+                <div id="main-info">
+                    <h1 style="margin-top: 3vh; margin-left: 2vw;">Profile</h1>
+                    <div style="display: flex;">
+                        <div>
+                            <div id="mi-avatar">
+                                <img id="mi-avatar-img" src="{{ user.avatar.url }}" alt="Profile picture">
+                            </div>
+                            {% if request.user == user %}
+                                <div id="edit-profile">
+                                    <p><b>EDIT PROFILE</b></p>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div style="margin-top: 6vh; margin-left: 2vw;">
+                            <p id="mi-username">{{ user.username }}</p>
+                            <p id="mi-country">Country: {{user.get_country_display }}</p>
+                            <p id="mi-profession">Profession: {{ user.profession }}</p>
+                            <p id="mi-phone">Phone number: {{ user.phone }}</p>
+                            {% if user.banned %}
+                                <p id="mi-banned" style="color: crimson;">Banned</p>
+                            {% else %}
+                                <p id="mi-banned">Not banned</p>
+                            {% endif %}
+                            <p id="mi-2stepauth">Two-Step Authenticaton: {{ user.twostepauth }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="additional-info">
+                    <h1 style="margin-top: 3vh; margin-left: 3vw;">Additional info</h1>
+                    {% if user.info %}
+                        <p id="mi-addinfo">Additionl info: {{ user.info }}</p>
+                    {% else %}
+                        <p id="mi-addinfo">No additional information provided</p>
+                    {% endif %}
+                </div>
+                <div id="links">
+                    <h1 style="margin-top: 3vh; margin-left: 10vw;">Links</h1>
+                </div>
+            </div>
+        </div>
+        <div id="left-panel">
+            <button id="left-panel-move" onclick="leftpanelmoveFunc()"></button>
+            <div id="left-panel-links">
+                <a href="{% url 'users_path' %}" class="lp-link"><b>USERS</b></a>
+                <a href="#" class="lp-link"><b>PORTFOLIOS</b></a>
+                <a href="#" class="lp-link"><b>UPLOAD RULES</b></a>
+                <a href="#" class="lp-link"><b>SAVES</b></a>
+                <a href="#" class="lp-link"><b>REPORT A BUG</b></a>
+                <a href="#" class="lp-link"><b>SUPPORT US</b></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        isOpen = 0;
+        function leftpanelmoveFunc(){
+            if(!isOpen){
+                document.getElementById("left-panel").style.marginLeft = "1%";
+                document.getElementById("left-panel").style.boxShadow = "0 0 0 2px crimson";
+                document.getElementById("left-panel-move").style.transform = "rotate(90deg)";
+                isOpen = 1;
+            }
+            else{
+                document.getElementById("left-panel").style.marginLeft = "-17.5%";
+                document.getElementById("left-panel").style.boxShadow = "0 0 0 0 crimson";
+                document.getElementById("left-panel-move").style.transform = "rotate(-90deg)";
+                isOpen = 0;
+            }
+        }
+        
+    </script>
+</body>
+</html>

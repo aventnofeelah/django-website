@@ -1,0 +1,32 @@
+STEPS:
+1.Create pages
+2.URL handle
+3.Create DB and DB handle
+
+(!):
+1.Make forms and its validation via django ✔
+2.Sessions Handle, Tokens (!!) 
+3.Django Login ✔
+4.from .transliter import transliteration_rus_eng
+5.Captcha
+6.Security
+7.email confirmation (!!)
+8.advanced payment system (-)
+9.cache (optional)
+10.logging
+11.signals
+12.adaptive for mobile
+13.slugs
+14.work upload rules page
+15.wsgi
+16.middleware
+17.2-step auth
+18.limit of requests (reg, login)
+19.cookie 
+20.show profile only if logged in ✔
+21.Welcome message to new user (add profession)
+22.сжатие картинки и видео. архивация файлов (?)
+23.редактировать только свой профиль ✔
+24.total files size
+25.advanced porfolio description 
+26.фильтр и сортировака портфолио 

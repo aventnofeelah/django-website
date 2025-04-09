@@ -1,0 +1,296 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@font-face{
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Italic-VariableFont_wght.ttf') format('truetype'),
+         url('../fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+#main{
+    width: 100wv;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    background-color: whitesmoke;
+    position: relative;
+    will-change: filter;
+    transition: filter 0.3s;
+}
+#left-panel{
+    width: 20vw;
+    height: 90vh;
+    background-color: rgb(11, 10, 15);
+    margin-left: -17.5%;
+    border-radius: 30px;
+    position: fixed;
+    top: 67%;
+    transform: translateY(-65%);
+    transition: margin-left 0.3s, box-shadow 0.3s;
+}
+#left-panel-links{
+    display: flex;
+    flex-direction: column; 
+    gap: 5vh; 
+    margin-left: 15%;
+    margin-top: 20%;
+}
+.lp-link{
+    color: white;
+    font-size: 2.5vh;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.lp-link:hover{
+    color: crimson;
+}
+#left-panel-move{
+    width: 3vw;
+    height: 4vh;
+    background-color: rgb(11, 10, 15);
+    background-image: url(images/left-panel-arrow.png);
+    background-size: cover;
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    border: 0px;
+    transform: rotate(-90deg);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+#messages{
+    position: absolute;
+    width: 70vw;
+    height: 70vh;
+    top: 15%;
+    left: 15%;
+    border: 2px solid rgb(11, 10, 15);
+    border-radius: 30px;
+    display: none;
+    background-color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+}
+#messages > h1{
+    margin-top: 1%;
+    margin-left: 2%;
+}
+#messages-close-btn{
+    background-image: url(images/close-icon.png);
+    background-size: cover;
+    width: 2vw;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border: none;
+    cursor: pointer;
+    background-color: whitesmoke;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+#messages-list{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+#message-div{
+    width: 90%;
+    height: auto;
+    border: 2px solid rgb(11, 10, 15);
+    border-radius: 30px;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    padding-left: 1%;
+    position: relative;
+}
+#delete-message-btn{
+    position: absolute;
+    top: 40%;
+    right: 3%;
+}
+#header{
+    width: 90vw;
+    height: 12vh;
+    background-color: rgb(11, 10, 15);
+    border-radius: 30px;
+    margin-top: -6vh;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+#reg-login-div{
+    position: absolute;
+    right: 5%;
+    top: 67%;
+}
+#registration-a{
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+#registration-a:hover{
+    color: crimson;
+}
+#login-a{
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+#login-a:hover{
+    color: crimson;
+}
+#avatar-name-div{
+    position: absolute;
+    right: 3%;
+    top: 57%;
+    display: flex;
+    gap: 1vw;
+}
+#username-a{
+    color: white;
+    text-decoration: none;
+    margin-top: 5%;
+    cursor: pointer;
+}
+#messages-icon{
+    background-image: url(images/messages.png);
+    background-size: cover;
+    width: 2vw;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background-color: rgb(11, 10, 15);
+    border: none;
+    cursor: pointer;
+}   
+#user-avatar{
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    width: 2vw;
+    height: auto;
+}
+#user-avatar-img{
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+#logout-a{
+    background-image: url(images/logout-icon.png);
+    background-size: cover;
+    width: 2vw;
+    height: auto;
+    aspect-ratio: 1 / 1;
+}
+#logo{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    font-size: 3.5vh;
+    position: absolute;
+    top: 57%;
+    left: 3%;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+}
+#add-portfolio{
+    background-image: url(images/add-icon.png);
+    background-size: cover;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    width: 2vw;
+    height: auto;
+}
+#middle{
+    width: 96.4vw;
+    height: 90vh;
+    border: 2px solid rgb(11, 10, 15);
+    border-radius: 30px;
+    margin-top: 6.6vh;
+    margin-left: 3vw;
+}
+#search-filter{
+    margin-top: 3vh;
+    margin-left: 2vw;
+    display: flex;
+}
+/* have no clue about grid */
+#users-list{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 10px;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+#user-div{
+    width: 18vw;
+    height: 10vh;
+    background-color: rgb(11, 10, 15);
+    border-radius: 20px;
+    color: white;
+    transition: box-shadow 0.3s;
+    display: flex;
+    align-items: center;
+}
+#user-div:hover{
+    box-shadow: 0 0 0 2px crimson;
+}
+#user-name{
+    color: lightblue;
+    font-size: 2vh;
+    text-decoration: none;
+}
+#user-div-avatar{
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    width: 3vw;
+    height: auto;
+    margin-left: 5%;
+}
+#user-div-avatar-img{
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.pagination{
+    position: absolute;
+    bottom: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+#search-users-div{
+    margin-left: 35%;
+}
+#search-users-div > form{
+    display: flex;
+}
+#search-users-input{
+    background-color: rgb(11, 10, 15);
+    color: white;
+    border-radius: 30px;
+    width: 25vh;
+    height: 30px;
+    transition: box-shadow 0.3s;
+    border: none;
+    outline: none;
+    padding-left: 5px;
+
+}
+#search-users-input:focus{
+    box-shadow: 0 0 0 2px crimson; 
+}
+#search-users-btn{
+    cursor: pointer;
+    margin-left: 3%;
+    border-radius: 30px;
+    background-color: rgb(11, 10, 15);
+    color: white;
+    width: 8vh;
+    border: none;
+    outline: none;
+    transition: box-shadow 0.3s;
+}
+#search-users-btn:hover{
+    box-shadow: 0 0 0 2px crimson;
+}

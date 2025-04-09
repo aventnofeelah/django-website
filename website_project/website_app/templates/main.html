@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>SkillStorage - Home</title>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <a href="{% url 'main_path' %}" id="logo">SkillStorage</a>
+            {% if user.is_authenticated %}
+                <div id="avatar-name-div">
+                    <a href="{% url 'addportfolio_path' request.user.id %}" id="add-portfolio"></a>
+                    <div id="user-avatar">
+                        <img id="user-avatar-img" src="{{ user.avatar.url }}" alt="Profile picture">
+                    </div>
+                    <a href="{% url 'profile_path' request.user.id %}" id="username-a">{{ request.user.username }}</a>
+                    <button id="messages-icon"></button>
+                    <a href="{% url 'logout_path' %}" id="logout-a"></a>
+                </div>
+            {% else %}
+                <div id="reg-login-div">
+                    <a id="registration-a" href="{% url 'reigistration_path' %}"><b>SIGN UP</b></a>
+                    <a id="login-a" href="{% url 'login_path' %}"><b>LOG IN</b></a> 
+                </div>
+            {% endif %}
+        </div>
+        <div id="middle">
+
+        </div>
+        <div id="left-panel">
+            <button id="left-panel-move" onclick="leftpanelmoveFunc()"></button>
+            <div id="left-panel-links">
+                <a href="{% url 'users_path' %}" class="lp-link"><b>USERS</b></a>
+                <a href="#" class="lp-link"><b>PORTFOLIOS</b></a>
+                <a href="#" class="lp-link"><b>UPLOAD RULES</b></a>
+                <a href="#" class="lp-link"><b>SAVES</b></a>
+                <a href="#" class="lp-link"><b>REPORT A BUG</b></a>
+                <a href="#" class="lp-link"><b>SUPPORT US</b></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        isOpen = 0;
+        function leftpanelmoveFunc(){
+            if(!isOpen){
+                document.getElementById("left-panel").style.marginLeft = "1%";
+                document.getElementById("left-panel").style.boxShadow = "0 0 0 2px crimson";
+                document.getElementById("left-panel-move").style.transform = "rotate(90deg)";
+                isOpen = 1;
+            }
+            else{
+                document.getElementById("left-panel").style.marginLeft = "-17.5%";
+                document.getElementById("left-panel").style.boxShadow = "0 0 0 0 crimson";
+                document.getElementById("left-panel-move").style.transform = "rotate(-90deg)";
+                isOpen = 0;
+            }
+        }
+        
+    </script>
+</body>
+</html>
